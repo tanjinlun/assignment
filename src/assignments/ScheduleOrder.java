@@ -13,9 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import assignments.ArrayListWithIterator;
+import assignments.ListWithIteratorInterface;
+import java.util.Iterator;
+
 public class ScheduleOrder extends javax.swing.JFrame {
-   
-    
+  private ListWithIteratorInterface<Order> OrderList;
     public ScheduleOrder() {
 
         initComponents();
@@ -98,6 +101,11 @@ public class ScheduleOrder extends javax.swing.JFrame {
         jLabel7.setText("Destination :");
 
         destination.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Wangsa Maju", "Genting Klang", "Taman Bunga Raya(TBR)", "Platinum Victory(PV)" }));
+        destination.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                destinationActionPerformed(evt);
+            }
+        });
 
         price.setText("RM10.00");
 
@@ -183,6 +191,7 @@ public class ScheduleOrder extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
+        
         String output = "";
             output += "Schedule Order :"+schedule.getSelectedItem()+"\n";
             output += "Section :"+section.getSelectedItem()+"\n";
@@ -192,13 +201,22 @@ public class ScheduleOrder extends javax.swing.JFrame {
             
         Order order = new Order(schedule.getSelectedItem().toString(),section.getSelectedItem().toString(),meal.getSelectedItem().toString(),
                 price.getText(),destination.getSelectedItem().toString());
+         OrderList = new ArrayListWithIterator<>();
+         OrderList.add(order);
         int check = JOptionPane.showConfirmDialog(null, output,"Check Order Information",JOptionPane.YES_NO_OPTION);
             if(check == JOptionPane.YES_OPTION)
-                JOptionPane.showMessageDialog(null, "Order Submitted",null,JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null,"Order Submitted",null,JOptionPane.OK_OPTION);
             else 
                 JOptionPane.showMessageDialog(null, "Order Canceled",null,JOptionPane.OK_OPTION);
+           
     }//GEN-LAST:event_submitActionPerformed
 
+    private void destinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinationActionPerformed
+        // TODO add your handling code here:
+        destination.getSelectedIndex();
+    }//GEN-LAST:event_destinationActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */

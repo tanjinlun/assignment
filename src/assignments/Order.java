@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,7 +16,7 @@ public class Order {
     private String price;
     private String destination;
 
-    public Order(String schedule, String section, String set, String price, String destination) {
+    public Order(String schedule, String section, String meal, String price,String destination) {
         this.schedule = schedule;
         this.section = section;
         this.meal = meal;
@@ -63,6 +63,12 @@ public class Order {
     public void setDestination(String destination) {
         this.destination = destination;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" + "schedule=" + schedule + ", section=" + section + ", meal=" + meal + ", price=" + price + ", destination=" + destination + '}';
+    }
+    
     /**
      * @param args the command line arguments
      */
