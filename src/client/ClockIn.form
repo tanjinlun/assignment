@@ -42,8 +42,8 @@
                       <Component id="jScrollPane1" min="-2" pref="368" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="jtfPwd" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
+                      <Component id="jtfPwd" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Component id="jtfName" min="-2" pref="140" max="-2" attributes="0"/>
