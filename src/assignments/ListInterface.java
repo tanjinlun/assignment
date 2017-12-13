@@ -35,7 +35,7 @@ public interface ListInterface<T> {
   /**
    * Task: Removes the entry at a given position from the list. Entries
    * originally at positions higher than the given position are at the next
-   * lower position within the list, and the list's size is decreased by 1.
+   * lower position within the list, and the list size is decreased by 1.
    *
    * @param givenPosition an integer that indicates the position of the entry to
    * be removed

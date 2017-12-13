@@ -19,6 +19,7 @@ public class CalculatePetrol extends javax.swing.JFrame {
     private int time1,time2,time3;
     private String output1, output2,output3,output4, output5,output6,output7, output8,output9,Des; 
     
+    
     /**
      * Creates new form NewJFrame
      */
@@ -60,6 +61,7 @@ public class CalculatePetrol extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         petrol = new javax.swing.JTextField();
+        assignOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +124,13 @@ public class CalculatePetrol extends javax.swing.JFrame {
             }
         });
 
+        assignOrder.setText("Assign Order");
+        assignOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,8 +138,10 @@ public class CalculatePetrol extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(jButton1)
-                .addGap(98, 98, 98)
+                .addGap(26, 26, 26)
                 .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(assignOrder)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +197,8 @@ public class CalculatePetrol extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(assignOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(delivery1)
@@ -237,7 +249,7 @@ public class CalculatePetrol extends javax.swing.JFrame {
     
    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
+        
         Des =destination.getSelectedItem().toString();
          try {
          Double.parseDouble(petrol.getText());
@@ -331,12 +343,14 @@ private void Biggest(){
             delivery1.setForeground(Color.red);
             delivery1b.setForeground(Color.red);
             delivery1c.setForeground(Color.red);//max=price1;
+            
         }
         else if(price3>price1)
         {
             delivery3.setForeground(Color.red);
             delivery3b.setForeground(Color.red);
             delivery3c.setForeground(Color.red);//max=price3;
+            
         }
     }
     else if(price2>price3)
@@ -346,12 +360,14 @@ private void Biggest(){
             delivery2.setForeground(Color.red);
             delivery2b.setForeground(Color.red);
             delivery2c.setForeground(Color.red);//max=price2;
+            
         }
         else if(price1>price2)
         {
             delivery1.setForeground(Color.red);
             delivery1b.setForeground(Color.red);
             delivery1c.setForeground(Color.red);//max=price1;
+            
         }
     }
     else if(price3>price1)
@@ -361,12 +377,14 @@ private void Biggest(){
              delivery3.setForeground(Color.red);
             delivery3b.setForeground(Color.red);
             delivery3c.setForeground(Color.red);//max=price3;
+            
         }
         else if(price2>price3)
         {
            delivery2.setForeground(Color.red);
             delivery2b.setForeground(Color.red);
             delivery2c.setForeground(Color.red);//max=price2
+            
         }
     }
 }
@@ -376,45 +394,45 @@ private void Lowest(){
     {
         if(price1<price3)
         {
-            delivery1.setForeground(Color.green);
-            delivery1b.setForeground(Color.green);
-            delivery1c.setForeground(Color.green);//min=price1;
+            delivery1.setForeground(Color.GREEN);
+            delivery1b.setForeground(Color.GREEN);
+            delivery1c.setForeground(Color.GREEN);//min=price1;
         }
         else if(price3<price1)
         {
-            delivery3.setForeground(Color.green);
-            delivery3b.setForeground(Color.green);
-            delivery3c.setForeground(Color.green);//min=price3;
+            delivery3.setForeground(Color.GREEN);
+            delivery3b.setForeground(Color.GREEN);
+            delivery3c.setForeground(Color.GREEN);//min=price3;
         }
     }
     if(price2<price3)
     {
         if(price2<price1)
         {
-            delivery2.setForeground(Color.green);
-            delivery2b.setForeground(Color.green);
-            delivery2c.setForeground(Color.green);//min=price2;
+            delivery2.setForeground(Color.GREEN);
+            delivery2b.setForeground(Color.GREEN);
+            delivery2c.setForeground(Color.GREEN);//min=price2;
         }
         else if(price1<price2)
         {
-            delivery1.setForeground(Color.green);
-            delivery1b.setForeground(Color.green);
-            delivery1c.setForeground(Color.green);//min=price1;
+            delivery1.setForeground(Color.GREEN);
+            delivery1b.setForeground(Color.GREEN);
+            delivery1c.setForeground(Color.GREEN);//min=price1;
         }
     }
     if(price3<price1)
     {
         if(price3<price2)
         {
-            delivery3.setForeground(Color.green);
-            delivery3b.setForeground(Color.green);
-            delivery3c.setForeground(Color.green);//min=price3;
+            delivery3.setForeground(Color.GREEN);
+            delivery3b.setForeground(Color.GREEN);
+            delivery3c.setForeground(Color.GREEN);//min=price3;
         }
         else if(price2<price3)
         {
-            delivery2.setForeground(Color.green);
-            delivery2b.setForeground(Color.green);
-            delivery2c.setForeground(Color.green);//min=price2;
+            delivery2.setForeground(Color.GREEN);
+            delivery2b.setForeground(Color.GREEN);
+            delivery2c.setForeground(Color.GREEN);//min=price2;
         }
     }
 }
@@ -480,11 +498,19 @@ private void Medium(){
         delivery3.setText("");
         delivery3b.setText("");
         delivery3c.setText("");
+        petrol.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void petrolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_petrolActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_petrolActionPerformed
+
+    private void assignOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignOrderActionPerformed
+        Biggest();
+        new AssignOrder().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_assignOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -529,6 +555,7 @@ private void Medium(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton assignOrder;
     private javax.swing.JTextField delivery1;
     private javax.swing.JTextField delivery1b;
     private javax.swing.JTextField delivery1c;

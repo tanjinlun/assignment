@@ -13,18 +13,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
-import assignments.ArrayListWithIterator;
-import assignments.ListWithIteratorInterface;
-import java.util.Iterator;
+import assignments.ExpandableArrayList;
 
 public class ScheduleOrder extends javax.swing.JFrame {
-  private ListWithIteratorInterface<Order> OrderList;
+  private ExpandableArrayList<Order> OrderList;
     public ScheduleOrder() {
-
         initComponents();
-      
-        
-        
+        hideTextField(); 
+    
+    }
+    public void hideTextField(){
+        deliveryman.setVisible(false);
+        orderID.setVisible(false);
+        r.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,16 +51,19 @@ public class ScheduleOrder extends javax.swing.JFrame {
         buttonGroup13 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        schedule = new javax.swing.JComboBox<String>();
+        schedule = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        section = new javax.swing.JComboBox<String>();
+        section = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        meal = new javax.swing.JComboBox<String>();
+        meal = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         submit = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        destination = new javax.swing.JComboBox<String>();
+        destination = new javax.swing.JComboBox<>();
         price = new javax.swing.JTextField();
+        deliveryman = new javax.swing.JTextField();
+        orderID = new javax.swing.JTextField();
+        r = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,7 +74,7 @@ public class ScheduleOrder extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Select your section :");
 
-        schedule.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Daily", "Every Weekdays", "Every Weekends" }));
+        schedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Every Weekdays", "Every Weekends" }));
         schedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scheduleActionPerformed(evt);
@@ -80,12 +84,12 @@ public class ScheduleOrder extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Make your order for :");
 
-        section.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Breakfast(9a.m.~12p.m.)", "Lunch(12p.m.~4p.m.)", "Dinner(6p.m.~10p.m.)" }));
+        section.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Breakfast(9a.m.~12p.m.)", "Lunch(12p.m.~4p.m.)", "Dinner(6p.m.~10p.m.)" }));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Select your meal :");
 
-        meal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Set A", "Set B", "Set C" }));
+        meal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Set A", "Set B", "Set C" }));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Price :");
@@ -100,7 +104,7 @@ public class ScheduleOrder extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Destination :");
 
-        destination.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Wangsa Maju", "Genting Klang", "Taman Bunga Raya(TBR)", "Platinum Victory(PV)" }));
+        destination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Wangsa Maju", "Genting Klang", "Taman Bunga Raya(TBR)", "Platinum Victory(PV)" }));
         destination.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 destinationActionPerformed(evt);
@@ -108,6 +112,12 @@ public class ScheduleOrder extends javax.swing.JFrame {
         });
 
         price.setText("RM10.00");
+
+        deliveryman.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deliverymanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,6 +136,12 @@ public class ScheduleOrder extends javax.swing.JFrame {
                 .addComponent(submit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(section, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,13 +153,17 @@ public class ScheduleOrder extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(price, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(meal, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(section, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(deliveryman, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(r, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(20, 20, 20)
@@ -163,23 +183,26 @@ public class ScheduleOrder extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(meal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(r, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deliveryman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(destination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(submit)
-                .addGap(0, 78, Short.MAX_VALUE))
+                .addGap(0, 112, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(228, Short.MAX_VALUE)))
+                    .addContainerGap(262, Short.MAX_VALUE)))
         );
 
         pack();
@@ -191,21 +214,30 @@ public class ScheduleOrder extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
-        
+        deliveryman.setText("Not Assigned");
+        orderID.setText("S001");
+        r.setText("Six Inch Cafe");
         String output = "";
+            output += "Order ID :"+orderID.getText()+"\n";
             output += "Schedule Order :"+schedule.getSelectedItem()+"\n";
             output += "Section :"+section.getSelectedItem()+"\n";
             output += "Meal :"+meal.getSelectedItem()+"\n";
             output += "Price :"+price.getText()+"\n";
             output += "Destination :"+destination.getSelectedItem()+"\n";
             
-        Order order = new Order(schedule.getSelectedItem().toString(),section.getSelectedItem().toString(),meal.getSelectedItem().toString(),
-                price.getText(),destination.getSelectedItem().toString());
-         OrderList = new ArrayListWithIterator<>();
+        Order order = new Order(orderID.getText(),schedule.getSelectedItem().toString(),section.getSelectedItem().toString(),r.getText(),
+                meal.getSelectedItem().toString(),price.getText(),destination.getSelectedItem().toString(),deliveryman.getText());
+         OrderList = new ExpandableArrayList<>();
          OrderList.add(order);
+        
+         
         int check = JOptionPane.showConfirmDialog(null, output,"Check Order Information",JOptionPane.YES_NO_OPTION);
             if(check == JOptionPane.YES_OPTION)
+            {
                 JOptionPane.showMessageDialog(null,"Order Submitted",null,JOptionPane.OK_OPTION);
+              
+            }
+            
             else 
                 JOptionPane.showMessageDialog(null, "Order Canceled",null,JOptionPane.OK_OPTION);
            
@@ -215,6 +247,10 @@ public class ScheduleOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
         destination.getSelectedIndex();
     }//GEN-LAST:event_destinationActionPerformed
+
+    private void deliverymanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliverymanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deliverymanActionPerformed
 
     
     /**
@@ -266,6 +302,7 @@ public class ScheduleOrder extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup7;
     private javax.swing.ButtonGroup buttonGroup8;
     private javax.swing.ButtonGroup buttonGroup9;
+    private javax.swing.JTextField deliveryman;
     private javax.swing.JComboBox<String> destination;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -274,7 +311,9 @@ public class ScheduleOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JComboBox<String> meal;
+    private javax.swing.JTextField orderID;
     private javax.swing.JTextField price;
+    private javax.swing.JTextField r;
     private javax.swing.JComboBox<String> schedule;
     private javax.swing.JComboBox<String> section;
     private javax.swing.JButton submit;
